@@ -7,6 +7,7 @@ class Solution {
         StringBuilder res = new StringBuilder();
 
         for (int r = 0; r < numRows; r++) {
+            // First row and last row chars have a difference of uni = 2 * (nr - 1)
             if (r == 0 || r == numRows - 1) {
                 int idx = r;
 
@@ -15,6 +16,9 @@ class Solution {
                     idx += uni;
                 }
             } else {
+                // At each row, uni decreases twice
+                // But the sum of two consecutive diffs is alway equal to uni
+                // And the diffs toggle based on turns
                 int f1 = uni - 2 * r;
                 int f2 = Math.abs(uni - f1);
                 int idx = r;
