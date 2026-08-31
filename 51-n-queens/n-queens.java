@@ -1,3 +1,12 @@
+// Exploiting the properties of matrix: If a queen is to be placed in a cell, instead of checking upper rows, upper neg diag, and upper pos diag manually, we maintain three sets to check if the col / neg diag / pos diag are already occupied.
+
+// colLock.add(col)
+// negDiagLock.add(row - col)
+// posDiagLock.add(row + col)
+
+// TC : Approx O(n!) (generally faster than that)
+// SC : O(n^2) (excluding the output space: board -> n^2, sets -> 3*n)
+
 class Solution {
     List<List<String>> result;
     Set<Integer> colLock, negDiagLock, posDiagLock;
@@ -51,6 +60,6 @@ class Solution {
             list.add(new String(row));
         }
 
-        result.add(new ArrayList<>(list));
+        result.add(list);
     }
 }
