@@ -5,45 +5,42 @@ class Solution {
     public List<List<String>> solveNQueens(int n) {
         N = n;
         result = new ArrayList<>();
-        List<String> board = new ArrayList<>();
+        char board[][] = new char[n][n];
 
         for (int i = 0; i < n; i++) {
-            board.add(".".repeat(n));
+            for (int j = 0; j < n; j++) {
+                board[i][j] = '.';
+            }
         }
 
         solve(board, 0);
         return result;
     }
 
-    private void solve(List<String> board, int row) {
+    private void solve(char[][] board, int row) {
         if (row == N) {
-            result.add(new ArrayList<>(board));
+            addBoard(board);
             return;
         }
 
         for (int col = 0; col < N; col++) {
             if (!isAttacked(board, row, col)) {
                 // Do
-                String t = board.get(row);
-                t = t.substring(0, col) + 'Q' + t.substring(col + 1);
-                board.remove(row);
-                board.add(row, t);
+                board[row][col] = 'Q';
 
                 // Explore
                 solve(board, row + 1);
 
                 // Undo
-                t = t.substring(0, col) + '.' + t.substring(col + 1);
-                board.remove(row);
-                board.add(row, t);
+                board[row][col] = '.';
             }
         }
     }
 
-    private boolean isAttacked(List<String> board, int row, int col) {
+    private boolean isAttacked(char[][] board, int row, int col) {
         // row
         for (int r = row - 1; r > -1; r--) {
-            if (board.get(r).charAt(col) == 'Q') {
+            if (board[r][col] == 'Q') {
                 return true;
             }
         }
@@ -51,7 +48,7 @@ class Solution {
         // upper left diagonal
         int r = row - 1, c = col - 1;
         while (r > -1 && c > -1) {
-            if (board.get(r--).charAt(c--) == 'Q') {
+            if (board[r--][c--] == 'Q') {
                 return true;
             }
         }
@@ -59,11 +56,21 @@ class Solution {
         // upper right diagonal
         r = row - 1; c = col + 1;
         while (r > -1 && c < N) {
-            if (board.get(r--).charAt(c++) == 'Q') {
+            if (board[r--][c++] == 'Q') {
                 return true;
             }
         }
 
         return false;
+    }
+
+    private void addBoard(char[][] board) {
+        List<String> list = new ArrayList<>();
+
+        for (char row[] : board) {
+            list.add(new String(row));
+        }
+
+        result.add(new ArrayList<>(list));
     }
 }
