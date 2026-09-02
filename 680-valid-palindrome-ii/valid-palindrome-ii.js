@@ -7,11 +7,11 @@ var validPalindrome = function(s) {
     let count = 0;
 
     while (l < r) {
-        if (s[l] == s[r]) {
-            l++; r--;
-        } else {
+        if (s[l] != s[r]) {
             return isPalindrome(s, l + 1, r) || isPalindrome(s, l, r - 1);
         }
+
+        l++; r--;
     }
 
     return true;
