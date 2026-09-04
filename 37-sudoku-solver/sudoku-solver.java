@@ -11,7 +11,7 @@ class Solution {
                         if (isValid(board, i, j, ch)) {
                             board[i][j] = ch;
 
-                            if (solve(board) == true) {
+                            if (solve(board)) {
                                 return true;
                             } else {
                                 board[i][j] = '.';
