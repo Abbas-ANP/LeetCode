@@ -1,3 +1,6 @@
+// TC: O(4^(r * c))
+// SC: O(r * c) (recursion stack approx stores all cells)
+
 class Solution {
     int res, R, C, eR, eC, rem;
 
