@@ -1,9 +1,8 @@
 class Solution {
-    int res, R, C, eR, eC, total;
+    int res, R, C, eR, eC, rem;
 
     public int uniquePathsIII(int[][] grid) {
-        res = 0;
-        total = 0;
+        res = 0; rem = 0;
         R = grid.length;
         C = grid[0].length;
         eR = -1; eC = -1;
@@ -12,7 +11,7 @@ class Solution {
 
         for (int i = 0; i < R; i++) {
             for (int j = 0; j < C; j++) {
-                if (grid[i][j] != -1) total++;
+                if (grid[i][j] != -1) rem++;
                 
                 if (grid[i][j] == 1) {
                     r = i; c = j;
@@ -24,11 +23,11 @@ class Solution {
             }
         }
 
-        solve(1, r, c, grid);
+        solve(r, c, rem - 1, grid);
         return res;
     }
 
-    private void solve(int count, int r, int c, int[][] grid) {
+    private void solve(int r, int c, int rem, int[][] grid) {
         if (r < 0 || r >= R || c < 0 || c >= C) {
             return;
         }
@@ -38,7 +37,7 @@ class Solution {
         }
 
         if (r == eR && c == eC) {
-            if (count == total) res++;
+            if (rem == 0) res++;
             return;
         }
         
@@ -47,10 +46,10 @@ class Solution {
         grid[r][c] = 5;
         
         // explore
-        solve(count + 1, r - 1, c, grid);
-        solve(count + 1, r, c - 1, grid);
-        solve(count + 1, r + 1, c, grid);
-        solve(count + 1, r, c + 1, grid);
+        solve(r - 1, c, rem - 1, grid);
+        solve(r, c - 1, rem - 1, grid);
+        solve(r + 1, c, rem - 1, grid);
+        solve(r, c + 1, rem - 1, grid);
 
         // undo
         grid[r][c] = temp;
