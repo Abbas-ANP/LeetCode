@@ -1,33 +1,35 @@
+// TC and SC: O(m * n)
+
 class Solution {
     int dp[][];
 
     public int numDistinct(String s, String t) {    
-        dp = new int[1001][1001];
+        dp = new int[s.length() + 1][t.length() + 1];
         
         for (int[] row : dp) {
             Arrays.fill(row, -1);
         }
 
-        return solve(0, 0, s, t);
+        return solve(s.length(), t.length(), s, t);
     }
 
-    private int solve(int i, int j, String s, String t) {
-        if (j == t.length()) {
-            return dp[i][j] = 1;
+    private int solve(int m, int n, String s, String t) {
+        if (n == 0) {
+            return dp[m][n] = 1;
         }
 
-        if (i == s.length()) {
-            return dp[i][j] = 0;
+        if (m == 0) {
+            return dp[m][n] = 0;
         }
 
-        if (dp[i][j] != -1) {
-            return dp[i][j];
+        if (dp[m][n] != -1) {
+            return dp[m][n];
         }
 
-        if (s.charAt(i) == t.charAt(j)) {
-            return dp[i][j] = solve(i + 1, j + 1, s, t) + solve(i + 1, j, s, t);
+        if (s.charAt(m - 1) == t.charAt(n - 1)) {
+            return dp[m][n] = solve(m - 1, n - 1, s, t) + solve(m - 1, n, s, t);
         }
 
-        return dp[i][j] = solve(i + 1, j, s, t);
+        return dp[m][n] = solve(m - 1, n, s, t);
     }
 }
