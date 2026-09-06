@@ -5,6 +5,8 @@
  */
 var map = function(arr, fn) {
     const mapped = [];
-    arr.forEach((num, idx) => mapped.push(fn(num, idx)));
+    for (let i = 0; i < arr.length; i++) {
+        mapped.push(fn(arr[i], i));
+    }
     return mapped;
 };
