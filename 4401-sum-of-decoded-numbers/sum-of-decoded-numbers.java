@@ -28,14 +28,8 @@ class Solution {
             long d = (long) Math.floor(num / 10);
             String n = String.valueOf(d);
 
-            if (w > n.length()) continue;
-
             long x = Long.parseLong(n.substring(0, (int) w));
             long y = Long.parseLong(n.substring((int) w));
-
-            System.out.println(num);
-            System.out.println(x);
-            System.out.println(y);
 
             sum = (sum + myPow(x, y)) % mod;
         }
