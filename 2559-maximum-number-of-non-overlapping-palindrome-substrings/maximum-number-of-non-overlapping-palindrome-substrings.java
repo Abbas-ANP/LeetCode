@@ -1,14 +1,15 @@
 class Solution {
     int dp[][];
-    int K;
+    int K, N;
 
     public int maxPalindromes(String s, int k) {
-        if (k == 1) return s.length();
-        dp = new int[2001][2001];
+        N = s.length();
+        if (k == 1) return N;
         K = k;
+        dp = new int[N + 1][N + 1];
 
-        for (int i = 0; i < 2001; i++) {
-            for (int j = 0; j < 2001; j++) {
+        for (int i = 0; i <= N; i++) {
+            for (int j = 0; j <= N; j++) {
                 dp[i][j] = -1;
             }
         }
