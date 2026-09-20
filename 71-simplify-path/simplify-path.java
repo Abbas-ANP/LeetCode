@@ -17,8 +17,8 @@ class Solution {
 
         StringBuilder sb = new StringBuilder();
 
-        for (String str : st) {
-            sb.append("/").append(str);
+        while (!st.isEmpty()) {
+            sb.append("/").append(st.pop());
         }
 
         return sb.length() == 0 ? "/" : sb.toString();
