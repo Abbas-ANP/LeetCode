@@ -1,13 +1,13 @@
 class Solution {
     public String simplifyPath(String path) {
         String[] actualPath = path.substring(1).split("/");
-        Stack<String> st = new Stack<>();
+        Deque<String> st = new ArrayDeque<>();
 
         for (String str : actualPath) {
             if ("..".equals(str) && !st.isEmpty()) {
-                st.pop();
+                st.pollLast();
             } else if (!str.equals("") && !str.equals(".") && !str.equals("..")) {
-                st.push(str);
+                st.offerLast(str);
             }
         }
 
