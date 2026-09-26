@@ -12,15 +12,13 @@ class Solution {
 
         while (i < n) {
             if (s.charAt(i) == '(') {
-                StringBuilder key = new StringBuilder();
+                int start = i + 1;
+                while (s.charAt(i++) != ')') continue;
+                String key = s.substring(start, i - 1);
 
-                while (i < n && s.charAt(i++) != ')') {
-                    key.append(s.charAt(i));
-                }
-                key.deleteCharAt(key.length() - 1);
 
-                if (map.containsKey(key.toString())) {
-                    res.append(map.get(key.toString()));
+                if (map.containsKey(key)) {
+                    res.append(map.get(key));
                 } else {
                     res.append("?");
                 }
