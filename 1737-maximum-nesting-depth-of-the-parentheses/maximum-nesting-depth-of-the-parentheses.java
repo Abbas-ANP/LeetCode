@@ -1,12 +1,12 @@
 class Solution {
     public int maxDepth(String s) {
-        Deque<Character> stack = new ArrayDeque<>();
-        int max = 0;
+        int n = s.length();
+        int o = 0, max = 0;
 
         for (char ch : s.toCharArray()) {
-            if (ch == '(') stack.offerLast(ch);
-            else if (ch == ')') stack.pollLast();
-            max = Math.max(stack.size(), max);
+            if (ch == '(') o++;
+            else if (ch == ')') o--;
+            max = Math.max(max, o);
         }
 
         return max;
