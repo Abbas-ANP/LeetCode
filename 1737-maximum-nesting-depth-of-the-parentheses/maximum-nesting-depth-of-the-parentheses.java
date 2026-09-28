@@ -1,6 +1,5 @@
 class Solution {
     public int maxDepth(String s) {
-        int n = s.length();
         int o = 0, max = 0;
 
         for (char ch : s.toCharArray()) {
