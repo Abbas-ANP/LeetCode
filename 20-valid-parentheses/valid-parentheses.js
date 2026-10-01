@@ -4,23 +4,19 @@
  */
 var isValid = function(s) {
     const stack = [];
-    const open = ['(', '[', '{'];
+    const chars = {
+        '(': ')',
+        '{': '}',
+        '[': ']'
+    };
 
     for (const k of s) {
-        if (open.includes(k)) {
+        if (chars[k]) {
             stack.push(k);
+        } else if (chars[stack[stack.length - 1]] == k) {
+            stack.pop();
         } else {
-            const char = stack[stack.length - 1];
-
-            if (
-                (char === '(' && k === ')') ||
-                (char === '[' && k === ']') ||
-                (char === '{' && k === '}')
-            ) {
-                stack.pop();
-            } else {
-                return false;
-            }
+            return false;
         }
     }
 
