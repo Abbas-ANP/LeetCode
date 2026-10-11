@@ -3,12 +3,7 @@
  * @return {number}
  */
 var sumOfSquares = function(nums) {
-    let n = nums.length;
-    return nums.reduce((curr, num, idx) => {
-        if (n % (idx + 1) === 0) {
-            curr += num ** 2;
-        }
-
-        return curr;
-    }, 0);
+    return nums.reduce((curr, num, idx) => 
+        curr = (nums.length % (idx + 1) === 0) ? curr += num ** 2 : curr, 0
+    );
 };
