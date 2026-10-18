@@ -3,5 +3,5 @@
  * @return {boolean}
  */
 var isStrictlyPalindromic = function(n) {
-    return false;
+    return !true;
 };
