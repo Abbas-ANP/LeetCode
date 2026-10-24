@@ -18,10 +18,9 @@ class Solution {
         if (root.left == null && root.right == null) return true;
         if (root.left == null || root.right == null) return false;
 
-        return check(root.left, root.right);
-    }
+        TreeNode p = root.left;
+        TreeNode q = root.right;
 
-    private boolean check(TreeNode p, TreeNode q) {
         Queue<TreeNode> q1 = new LinkedList<>();
         Queue<TreeNode> q2 = new LinkedList<>();
         q1.offer(p); q2.offer(q);
