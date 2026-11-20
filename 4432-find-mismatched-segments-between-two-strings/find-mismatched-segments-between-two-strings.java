@@ -11,10 +11,7 @@ class Solution {
             while (i < n && s1.charAt(i) != s2.charAt(i)) i++;
 
             if (s - i != 0) {
-                List<String> curr = new ArrayList<>();
-                curr.add(s1.substring(s, i));
-                curr.add(s2.substring(s, i));
-                res.add(curr);
+                res.add(new ArrayList<>(Arrays.asList(s1.substring(s, i), s2.substring(s, i))));
             } else {
                 i++;
             }
